@@ -204,6 +204,25 @@
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }
 }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+}
+@keyframes particleRise {
+  0%   { transform: translateY(100vh) translateX(0);     opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-10vh) translateX(40px);  opacity: 0; }
+}
+@keyframes auroraShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes shootingStar {
+  0%   { transform: translate3d(0,0,0) rotate(-20deg);       opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate3d(-120vw, 60vh, 0) rotate(-20deg); opacity: 0; }
+}
 
 @utility bg-animated-grid {
   background-image:
@@ -218,3 +237,15 @@
 @utility animate-blob-2 { animation: blobFloat2 22s ease-in-out infinite; }
 @utility animate-blob-3 { animation: blobFloat3 26s ease-in-out infinite; }
 @utility animate-avatar-float { animation: avatarFloat 6s ease-in-out infinite; }
+
+@utility bg-aurora {
+  background: linear-gradient(120deg,
+    rgba(37, 99, 235, 0.25) 0%,
+    rgba(124, 58, 237, 0.25) 25%,
+    rgba(37, 99, 235, 0.15) 50%,
+    rgba(124, 58, 237, 0.25) 75%,
+    rgba(37, 99, 235, 0.25) 100%);
+  background-size: 400% 400%;
+  animation: auroraShift 20s ease infinite;
+  filter: blur(60px);
+}
