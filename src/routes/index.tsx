@@ -20,7 +20,7 @@ import {
   ArrowRight,
   FileText,
 } from "lucide-react";
-import avatarImg from "@/assets/avatar.png";
+import joaquinAsset from "@/assets/joaquin.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -124,6 +124,14 @@ function Index() {
 
   return (
     <div className="min-h-screen text-foreground">
+      {/* ANIMATED SITEWIDE BACKGROUND */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-animated-grid opacity-60" />
+        <div className="absolute top-[-10%] left-[-10%] w-[45rem] h-[45rem] rounded-full bg-brand-blue/30 blur-[120px] animate-blob-1" />
+        <div className="absolute top-[30%] right-[-15%] w-[40rem] h-[40rem] rounded-full bg-brand-purple/30 blur-[120px] animate-blob-2" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[35rem] h-[35rem] rounded-full bg-primary/25 blur-[120px] animate-blob-3" />
+      </div>
+
       {/* NAVBAR */}
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
@@ -167,11 +175,6 @@ function Index() {
         id="inicio"
         className="relative pt-36 pb-24 px-6 overflow-hidden"
       >
-        <div className="absolute inset-0 -z-10 opacity-40 pointer-events-none">
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-brand-blue blur-3xl opacity-40" />
-          <div className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-brand-purple blur-3xl opacity-40" />
-        </div>
-
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
@@ -209,14 +212,15 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative mx-auto">
-            <div className="absolute inset-0 -m-6 rounded-full bg-gradient-brand blur-2xl opacity-40" />
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border bg-card shadow-brand">
+          <div className="relative mx-auto animate-avatar-float">
+            <div className="absolute -inset-6 rounded-full bg-gradient-brand blur-3xl opacity-50" />
+            <div className="absolute -inset-1 rounded-full bg-gradient-brand opacity-80" />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-background bg-card shadow-brand">
               <img
-                src={avatarImg}
-                alt="Ilustración de Joaquín Cerna"
-                width={1024}
-                height={1024}
+                src={joaquinAsset.url}
+                alt="Joaquín Cerna"
+                width={800}
+                height={800}
                 className="w-full h-full object-cover"
               />
             </div>
