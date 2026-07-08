@@ -21,6 +21,7 @@ import {
   FileText,
 } from "lucide-react";
 import joaquinAsset from "@/assets/joaquin.jpg.asset.json";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -124,13 +125,7 @@ function Index() {
 
   return (
     <div className="min-h-screen text-foreground">
-      {/* ANIMATED SITEWIDE BACKGROUND */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-animated-grid opacity-60" />
-        <div className="absolute top-[-10%] left-[-10%] w-[45rem] h-[45rem] rounded-full bg-brand-blue/30 blur-[120px] animate-blob-1" />
-        <div className="absolute top-[30%] right-[-15%] w-[40rem] h-[40rem] rounded-full bg-brand-purple/30 blur-[120px] animate-blob-2" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[35rem] h-[35rem] rounded-full bg-primary/25 blur-[120px] animate-blob-3" />
-      </div>
+      <AnimatedBackground />
 
       {/* NAVBAR */}
       <header
