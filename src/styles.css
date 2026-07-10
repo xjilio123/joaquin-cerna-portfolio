@@ -249,3 +249,53 @@
   animation: auroraShift 20s ease infinite;
   filter: blur(60px);
 }
+
+/* =========================================================
+ * THEMES — switch by setting data-theme on <html>.
+ * Default (no attribute): blue / purple / ink.
+ * =======================================================*/
+
+[data-theme="fire"] {
+  --brand-blue: oklch(0.65 0.22 27);   /* red */
+  --brand-purple: oklch(0.75 0.18 55); /* orange */
+  --brand-ink: oklch(0.17 0.02 30);
+
+  --background: oklch(0.15 0.02 30);
+  --card: oklch(0.20 0.025 30);
+  --popover: oklch(0.20 0.025 30);
+  --primary: oklch(0.65 0.22 27);
+  --accent: oklch(0.75 0.18 55);
+  --ring: oklch(0.65 0.22 27);
+  --muted: oklch(0.23 0.025 30);
+  --secondary: oklch(0.26 0.03 30);
+
+  --gradient-brand: linear-gradient(135deg, #DC2626 0%, #F97316 100%);
+  --gradient-hero: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.28), transparent 60%),
+                   radial-gradient(ellipse at bottom left, rgba(220, 38, 38, 0.28), transparent 55%),
+                   linear-gradient(180deg, #170a05 0%, #0a0402 100%);
+  --shadow-brand: 0 20px 60px -20px rgba(249, 115, 22, 0.5);
+}
+
+[data-theme="mono"] {
+  --brand-blue: oklch(0.98 0 0);
+  --brand-purple: oklch(0.75 0 0);
+  --brand-ink: oklch(0.14 0 0);
+
+  --background: oklch(0.12 0 0);
+  --card: oklch(0.18 0 0);
+  --popover: oklch(0.18 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.10 0 0);
+  --accent: oklch(0.85 0 0);
+  --accent-foreground: oklch(0.10 0 0);
+  --ring: oklch(0.98 0 0);
+  --muted: oklch(0.22 0 0);
+  --secondary: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+
+  --gradient-brand: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+  --gradient-hero: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.12), transparent 60%),
+                   radial-gradient(ellipse at bottom left, rgba(255, 255, 255, 0.06), transparent 55%),
+                   linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  --shadow-brand: 0 20px 60px -20px rgba(255, 255, 255, 0.25);
+}
