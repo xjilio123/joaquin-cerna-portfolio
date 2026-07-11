@@ -50,7 +50,9 @@ type Dict = {
   eduTitle: string; eduText: string; expTitle: string; expText: string;
   certTitle: string; certText: string;
   skillsTitle: string; skillsKicker: string;
-  projectsTitle: string; projectsKicker: string; viewGithub: string;
+  universityProjectsTitle: string; universityProjectsKicker: string;
+  personalProjectsTitle: string; personalProjectsKicker: string;
+  personalLandingTitle: string; personalDataTitle: string; personalEcommerceTitle: string;
   certsTitle: string; certsKicker: string;
   cvTitle: string; cvKicker: string;
   contactTitle: string; contactKicker: string;
@@ -78,7 +80,9 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experiencia", expText: "Analista de Datos · QA · Soporte TI",
     certTitle: "Certificaciones", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Habilidades", skillsKicker: "Stack técnico",
-    projectsTitle: "Proyectos", projectsKicker: "Trabajo destacado", viewGithub: "Ver en GitHub",
+    universityProjectsTitle: "Proyectos Universitarios", universityProjectsKicker: "Trabajo académico",
+    personalProjectsTitle: "Proyectos Personales", personalProjectsKicker: "Iniciativas propias",
+    personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
     certsTitle: "Certificados", certsKicker: "Formación continua",
     cvTitle: "Curriculum Vitae", cvKicker: "Documento",
     contactTitle: "Contacto", contactKicker: "Hablemos",
@@ -106,7 +110,9 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experience", expText: "Data Analyst · QA · IT Support",
     certTitle: "Certifications", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Skills", skillsKicker: "Tech stack",
-    projectsTitle: "Projects", projectsKicker: "Featured work", viewGithub: "View on GitHub",
+    universityProjectsTitle: "University Projects", universityProjectsKicker: "Academic work",
+    personalProjectsTitle: "Personal Projects", personalProjectsKicker: "Own initiatives",
+    personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
     certsTitle: "Certificates", certsKicker: "Continuous learning",
     cvTitle: "Curriculum Vitae", cvKicker: "Document",
     contactTitle: "Contact", contactKicker: "Let's talk",
@@ -117,7 +123,7 @@ const T: Record<Lang, Dict> = {
   },
 };
 
-const projectsI18n: Record<Lang, { name: string; description: string }[]> = {
+const universityProjectsI18n: Record<Lang, { name: string; description: string }[]> = {
   es: [
     { name: "ETL & Dashboards — JPC Garrita", description: "Procesos ETL en Python y SQL, modelado dimensional y dashboards interactivos en Power BI para visualizar KPIs de negocio y detectar tendencias." },
     { name: "Automatización QA — Ña Vishe", description: "Pruebas automatizadas E2E con Playwright, NodeJS y TypeScript. Gestión ágil con Scrum y control de versiones en GitHub sobre entorno Chromium." },
@@ -132,12 +138,44 @@ const projectsI18n: Record<Lang, { name: string; description: string }[]> = {
   ],
 };
 
-const projectMeta: { tech: string[]; href: string | null }[] = [
-  { tech: ["Python", "SQL", "Power BI", "EDA"], href: null },
-  { tech: ["Playwright", "TypeScript", "NodeJS", "GitHub"], href: "https://github.com/" },
-  { tech: ["Soporte TI", "Outlook", "Hardware", "Software"], href: null },
-  { tech: ["IoT", "SQL Server", "Modelado", "Prototipado"], href: null },
+const universityProjectMeta: { tech: string[] }[] = [
+  { tech: ["Python", "SQL", "Power BI", "EDA"] },
+  { tech: ["Playwright", "TypeScript", "NodeJS", "GitHub"] },
+  { tech: ["Soporte TI", "Outlook", "Hardware", "Software"] },
+  { tech: ["IoT", "SQL Server", "Modelado", "Prototipado"] },
 ];
+
+type PersonalProject = { name: string; description: string; tech: string[] };
+const personalProjectsI18n: Record<Lang, Record<"landing" | "data" | "ecommerce", PersonalProject[]>> = {
+  es: {
+    landing: [
+      { name: "Sitio corporativo responsive", description: "Landing page moderna con diseño mobile-first, formulario de contacto y secciones de servicios optimizadas para conversión.", tech: ["React", "Tailwind CSS", "Vite"] },
+      { name: "Página de producto SaaS", description: "Hero con llamada a la acción, pricing cards y testimonios; enfocada en presentar un producto digital de forma clara.", tech: ["React", "TypeScript", "Figma"] },
+    ],
+    data: [
+      { name: "Dashboard de ventas", description: "Panel interactivo con KPIs de ventas, tendencias mensuales y segmentación de clientes usando datos de ejemplo.", tech: ["Power BI", "SQL", "Excel"] },
+      { name: "Análisis de churn", description: "Modelo exploratorio para identificar clientes propensos a cancelar y proponer acciones de retención.", tech: ["Python", "Pandas", "Matplotlib"] },
+    ],
+    ecommerce: [
+      { name: "Tienda de productos digitales", description: "Catálogo de productos, carrito de compras y flujo de checkout simplificado para productos descargables.", tech: ["React", "Stripe", "Tailwind CSS"] },
+      { name: "Marketplace de cursos", description: "Listado de cursos con filtros, detalle de contenido y simulación de proceso de inscripción.", tech: ["Next.js", "PostgreSQL", "Prisma"] },
+    ],
+  },
+  en: {
+    landing: [
+      { name: "Responsive corporate site", description: "Modern landing page with mobile-first design, contact form and service sections optimized for conversion.", tech: ["React", "Tailwind CSS", "Vite"] },
+      { name: "SaaS product page", description: "Hero with call-to-action, pricing cards and testimonials; focused on presenting a digital product clearly.", tech: ["React", "TypeScript", "Figma"] },
+    ],
+    data: [
+      { name: "Sales dashboard", description: "Interactive panel with sales KPIs, monthly trends and customer segmentation using sample data.", tech: ["Power BI", "SQL", "Excel"] },
+      { name: "Churn analysis", description: "Exploratory model to identify customers likely to cancel and propose retention actions.", tech: ["Python", "Pandas", "Matplotlib"] },
+    ],
+    ecommerce: [
+      { name: "Digital products store", description: "Product catalog, shopping cart and simplified checkout flow for downloadable products.", tech: ["React", "Stripe", "Tailwind CSS"] },
+      { name: "Course marketplace", description: "Course listing with filters, content detail and simulated enrollment process.", tech: ["Next.js", "PostgreSQL", "Prisma"] },
+    ],
+  },
+};
 
 const skills = [
   { name: "SQL", icon: Database },
@@ -210,7 +248,8 @@ function Index() {
     { href: "#cv", label: t.navCV },
     { href: "#contacto", label: t.navContact },
   ];
-  const projects = projectsI18n[lang].map((p, i) => ({ ...p, ...projectMeta[i] }));
+  const universityProjects = universityProjectsI18n[lang].map((p, i) => ({ ...p, tech: universityProjectMeta[i].tech }));
+  const personalProjects = personalProjectsI18n[lang];
   const currentTheme = THEMES.find((x) => x.key === theme)!;
   const cycleTheme = () => {
     const idx = THEMES.findIndex((x) => x.key === theme);
@@ -336,17 +375,17 @@ function Index() {
       <Section id="habilidades" title={t.skillsTitle} kicker={t.skillsKicker}>
         <div className="flex flex-wrap gap-3">
           {skills.map((s) => (
-            <div key={s.name} className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-sm backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
-              <s.icon className="w-4 h-4 text-primary group-hover:text-accent transition-colors" />
+            <div key={s.name} className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-base backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
+              <s.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
               {s.name}
             </div>
           ))}
         </div>
       </Section>
 
-      <Section id="proyectos" title={t.projectsTitle} kicker={t.projectsKicker}>
+      <Section id="proyectos" title={t.universityProjectsTitle} kicker={t.universityProjectsKicker}>
         <div className="grid md:grid-cols-2 gap-5">
-          {projects.map((p) => (
+          {universityProjects.map((p) => (
             <article key={p.name} className="group relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur hover:border-primary/60 transition">
               <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-[0.06] transition" />
               <h3 className="text-lg font-semibold">{p.name}</h3>
@@ -356,13 +395,34 @@ function Index() {
                   <span key={tt} className="text-xs rounded-md border border-border bg-background/40 px-2 py-1 text-muted-foreground">{tt}</span>
                 ))}
               </div>
-              {p.href && (
-                <a href={p.href} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-accent transition">
-                  <Github className="w-4 h-4" /> {t.viewGithub}
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              )}
             </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="proyectos-personales" title={t.personalProjectsTitle} kicker={t.personalProjectsKicker}>
+        <div className="space-y-10">
+          {(["landing", "data", "ecommerce"] as const).map((cat) => (
+            <div key={cat}>
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-primary" />
+                {cat === "landing" ? t.personalLandingTitle : cat === "data" ? t.personalDataTitle : t.personalEcommerceTitle}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-5">
+                {personalProjects[cat].map((p) => (
+                  <article key={p.name} className="group relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur hover:border-primary/60 transition">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-[0.06] transition" />
+                    <h4 className="text-lg font-semibold">{p.name}</h4>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tech.map((tt) => (
+                        <span key={tt} className="text-xs rounded-md border border-border bg-background/40 px-2 py-1 text-muted-foreground">{tt}</span>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </Section>
