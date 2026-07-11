@@ -400,6 +400,33 @@ function Index() {
         </div>
       </Section>
 
+      <Section id="proyectos-personales" title={t.personalProjectsTitle} kicker={t.personalProjectsKicker}>
+        <div className="space-y-10">
+          {(["landing", "data", "ecommerce"] as const).map((cat) => (
+            <div key={cat}>
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-primary" />
+                {cat === "landing" ? t.personalLandingTitle : cat === "data" ? t.personalDataTitle : t.personalEcommerceTitle}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-5">
+                {personalProjects[cat].map((p) => (
+                  <article key={p.name} className="group relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur hover:border-primary/60 transition">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-[0.06] transition" />
+                    <h4 className="text-lg font-semibold">{p.name}</h4>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tech.map((tt) => (
+                        <span key={tt} className="text-xs rounded-md border border-border bg-background/40 px-2 py-1 text-muted-foreground">{tt}</span>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section id="certificados" title={t.certsTitle} kicker={t.certsKicker}>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {certificates.map((c) => (
