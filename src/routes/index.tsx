@@ -248,7 +248,8 @@ function Index() {
     { href: "#cv", label: t.navCV },
     { href: "#contacto", label: t.navContact },
   ];
-  const projects = projectsI18n[lang].map((p, i) => ({ ...p, ...projectMeta[i] }));
+  const universityProjects = universityProjectsI18n[lang].map((p, i) => ({ ...p, tech: universityProjectMeta[i].tech }));
+  const personalProjects = personalProjectsI18n[lang];
   const currentTheme = THEMES.find((x) => x.key === theme)!;
   const cycleTheme = () => {
     const idx = THEMES.findIndex((x) => x.key === theme);
