@@ -375,17 +375,17 @@ function Index() {
       <Section id="habilidades" title={t.skillsTitle} kicker={t.skillsKicker}>
         <div className="flex flex-wrap gap-3">
           {skills.map((s) => (
-            <div key={s.name} className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-sm backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
-              <s.icon className="w-4 h-4 text-primary group-hover:text-accent transition-colors" />
+            <div key={s.name} className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-base backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
+              <s.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
               {s.name}
             </div>
           ))}
         </div>
       </Section>
 
-      <Section id="proyectos" title={t.projectsTitle} kicker={t.projectsKicker}>
+      <Section id="proyectos" title={t.universityProjectsTitle} kicker={t.universityProjectsKicker}>
         <div className="grid md:grid-cols-2 gap-5">
-          {projects.map((p) => (
+          {universityProjects.map((p) => (
             <article key={p.name} className="group relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur hover:border-primary/60 transition">
               <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-[0.06] transition" />
               <h3 className="text-lg font-semibold">{p.name}</h3>
@@ -395,12 +395,6 @@ function Index() {
                   <span key={tt} className="text-xs rounded-md border border-border bg-background/40 px-2 py-1 text-muted-foreground">{tt}</span>
                 ))}
               </div>
-              {p.href && (
-                <a href={p.href} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-accent transition">
-                  <Github className="w-4 h-4" /> {t.viewGithub}
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              )}
             </article>
           ))}
         </div>
