@@ -50,7 +50,9 @@ type Dict = {
   eduTitle: string; eduText: string; expTitle: string; expText: string;
   certTitle: string; certText: string;
   skillsTitle: string; skillsKicker: string;
-  projectsTitle: string; projectsKicker: string; viewGithub: string;
+  universityProjectsTitle: string; universityProjectsKicker: string;
+  personalProjectsTitle: string; personalProjectsKicker: string;
+  personalLandingTitle: string; personalDataTitle: string; personalEcommerceTitle: string;
   certsTitle: string; certsKicker: string;
   cvTitle: string; cvKicker: string;
   contactTitle: string; contactKicker: string;
@@ -78,7 +80,9 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experiencia", expText: "Analista de Datos · QA · Soporte TI",
     certTitle: "Certificaciones", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Habilidades", skillsKicker: "Stack técnico",
-    projectsTitle: "Proyectos", projectsKicker: "Trabajo destacado", viewGithub: "Ver en GitHub",
+    universityProjectsTitle: "Proyectos Universitarios", universityProjectsKicker: "Trabajo académico",
+    personalProjectsTitle: "Proyectos Personales", personalProjectsKicker: "Iniciativas propias",
+    personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
     certsTitle: "Certificados", certsKicker: "Formación continua",
     cvTitle: "Curriculum Vitae", cvKicker: "Documento",
     contactTitle: "Contacto", contactKicker: "Hablemos",
@@ -106,7 +110,9 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experience", expText: "Data Analyst · QA · IT Support",
     certTitle: "Certifications", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Skills", skillsKicker: "Tech stack",
-    projectsTitle: "Projects", projectsKicker: "Featured work", viewGithub: "View on GitHub",
+    universityProjectsTitle: "University Projects", universityProjectsKicker: "Academic work",
+    personalProjectsTitle: "Personal Projects", personalProjectsKicker: "Own initiatives",
+    personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
     certsTitle: "Certificates", certsKicker: "Continuous learning",
     cvTitle: "Curriculum Vitae", cvKicker: "Document",
     contactTitle: "Contact", contactKicker: "Let's talk",
@@ -117,7 +123,7 @@ const T: Record<Lang, Dict> = {
   },
 };
 
-const projectsI18n: Record<Lang, { name: string; description: string }[]> = {
+const universityProjectsI18n: Record<Lang, { name: string; description: string }[]> = {
   es: [
     { name: "ETL & Dashboards — JPC Garrita", description: "Procesos ETL en Python y SQL, modelado dimensional y dashboards interactivos en Power BI para visualizar KPIs de negocio y detectar tendencias." },
     { name: "Automatización QA — Ña Vishe", description: "Pruebas automatizadas E2E con Playwright, NodeJS y TypeScript. Gestión ágil con Scrum y control de versiones en GitHub sobre entorno Chromium." },
@@ -132,12 +138,44 @@ const projectsI18n: Record<Lang, { name: string; description: string }[]> = {
   ],
 };
 
-const projectMeta: { tech: string[]; href: string | null }[] = [
-  { tech: ["Python", "SQL", "Power BI", "EDA"], href: null },
-  { tech: ["Playwright", "TypeScript", "NodeJS", "GitHub"], href: "https://github.com/" },
-  { tech: ["Soporte TI", "Outlook", "Hardware", "Software"], href: null },
-  { tech: ["IoT", "SQL Server", "Modelado", "Prototipado"], href: null },
+const universityProjectMeta: { tech: string[] }[] = [
+  { tech: ["Python", "SQL", "Power BI", "EDA"] },
+  { tech: ["Playwright", "TypeScript", "NodeJS", "GitHub"] },
+  { tech: ["Soporte TI", "Outlook", "Hardware", "Software"] },
+  { tech: ["IoT", "SQL Server", "Modelado", "Prototipado"] },
 ];
+
+type PersonalProject = { name: string; description: string; tech: string[] };
+const personalProjectsI18n: Record<Lang, Record<"landing" | "data" | "ecommerce", PersonalProject[]>> = {
+  es: {
+    landing: [
+      { name: "Sitio corporativo responsive", description: "Landing page moderna con diseño mobile-first, formulario de contacto y secciones de servicios optimizadas para conversión.", tech: ["React", "Tailwind CSS", "Vite"] },
+      { name: "Página de producto SaaS", description: "Hero con llamada a la acción, pricing cards y testimonios; enfocada en presentar un producto digital de forma clara.", tech: ["React", "TypeScript", "Figma"] },
+    ],
+    data: [
+      { name: "Dashboard de ventas", description: "Panel interactivo con KPIs de ventas, tendencias mensuales y segmentación de clientes usando datos de ejemplo.", tech: ["Power BI", "SQL", "Excel"] },
+      { name: "Análisis de churn", description: "Modelo exploratorio para identificar clientes propensos a cancelar y proponer acciones de retención.", tech: ["Python", "Pandas", "Matplotlib"] },
+    ],
+    ecommerce: [
+      { name: "Tienda de productos digitales", description: "Catálogo de productos, carrito de compras y flujo de checkout simplificado para productos descargables.", tech: ["React", "Stripe", "Tailwind CSS"] },
+      { name: "Marketplace de cursos", description: "Listado de cursos con filtros, detalle de contenido y simulación de proceso de inscripción.", tech: ["Next.js", "PostgreSQL", "Prisma"] },
+    ],
+  },
+  en: {
+    landing: [
+      { name: "Responsive corporate site", description: "Modern landing page with mobile-first design, contact form and service sections optimized for conversion.", tech: ["React", "Tailwind CSS", "Vite"] },
+      { name: "SaaS product page", description: "Hero with call-to-action, pricing cards and testimonials; focused on presenting a digital product clearly.", tech: ["React", "TypeScript", "Figma"] },
+    ],
+    data: [
+      { name: "Sales dashboard", description: "Interactive panel with sales KPIs, monthly trends and customer segmentation using sample data.", tech: ["Power BI", "SQL", "Excel"] },
+      { name: "Churn analysis", description: "Exploratory model to identify customers likely to cancel and propose retention actions.", tech: ["Python", "Pandas", "Matplotlib"] },
+    ],
+    ecommerce: [
+      { name: "Digital products store", description: "Product catalog, shopping cart and simplified checkout flow for downloadable products.", tech: ["React", "Stripe", "Tailwind CSS"] },
+      { name: "Course marketplace", description: "Course listing with filters, content detail and simulated enrollment process.", tech: ["Next.js", "PostgreSQL", "Prisma"] },
+    ],
+  },
+};
 
 const skills = [
   { name: "SQL", icon: Database },
