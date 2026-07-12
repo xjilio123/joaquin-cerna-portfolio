@@ -50,6 +50,7 @@ type Dict = {
   eduTitle: string; eduText: string; expTitle: string; expText: string;
   certTitle: string; certText: string;
   skillsTitle: string; skillsKicker: string;
+  skillAnalysisTitle: string; skillDatabasesTitle: string; skillProjectMgmtTitle: string; skillAIToolsTitle: string;
   universityProjectsTitle: string; universityProjectsKicker: string;
   personalProjectsTitle: string; personalProjectsKicker: string;
   personalLandingTitle: string; personalDataTitle: string; personalEcommerceTitle: string;
@@ -80,6 +81,7 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experiencia", expText: "Analista de Datos · QA · Soporte TI",
     certTitle: "Certificaciones", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Habilidades", skillsKicker: "Stack técnico",
+    skillAnalysisTitle: "Análisis de Datos y BI", skillDatabasesTitle: "Bases de Datos", skillProjectMgmtTitle: "Gestión de Proyectos", skillAIToolsTitle: "Herramientas de IA",
     universityProjectsTitle: "Proyectos Universitarios", universityProjectsKicker: "Trabajo académico",
     personalProjectsTitle: "Proyectos Personales", personalProjectsKicker: "Iniciativas propias",
     personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
@@ -110,6 +112,7 @@ const T: Record<Lang, Dict> = {
     expTitle: "Experience", expText: "Data Analyst · QA · IT Support",
     certTitle: "Certifications", certText: "Huawei · UNI · CertiProf · Santander",
     skillsTitle: "Skills", skillsKicker: "Tech stack",
+    skillAnalysisTitle: "Data Analysis & BI", skillDatabasesTitle: "Databases", skillProjectMgmtTitle: "Project Management", skillAIToolsTitle: "AI Tools",
     universityProjectsTitle: "University Projects", universityProjectsKicker: "Academic work",
     personalProjectsTitle: "Personal Projects", personalProjectsKicker: "Own initiatives",
     personalLandingTitle: "Landing Page", personalDataTitle: "Data Analytics", personalEcommerceTitle: "E-commerce",
@@ -177,24 +180,46 @@ const personalProjectsI18n: Record<Lang, Record<"landing" | "data" | "ecommerce"
   },
 };
 
-const skills = [
-  { name: "SQL", icon: Database },
-  { name: "Power BI", icon: BarChart3 },
-  { name: "Python", icon: Code2 },
-  { name: "Excel", icon: BarChart3 },
-  { name: "Tableau", icon: BarChart3 },
-  { name: "SQL Server", icon: Database },
-  { name: "PostgreSQL", icon: Database },
-  { name: "MySQL", icon: Database },
-  { name: "GitHub", icon: Github },
-  { name: "Scrum", icon: Sparkles },
-  { name: "Jira", icon: Sparkles },
-  { name: "Power Automate", icon: Bot },
-  { name: "Power Apps", icon: Bot },
-  { name: "ChatGPT", icon: Bot },
-  { name: "Claude", icon: Bot },
-  { name: "Copilot", icon: Bot },
-  { name: "Gemini", icon: Bot },
+type SkillDef = { name: string; level?: string; icon: React.ComponentType<{ className?: string }> };
+type SkillCategory = { titleKey: keyof Dict; skills: SkillDef[] };
+
+const skillCategories: SkillCategory[] = [
+  {
+    titleKey: "skillAnalysisTitle",
+    skills: [
+      { name: "SQL", level: "Intermedio", icon: Database },
+      { name: "Power BI", level: "Avanzado", icon: BarChart3 },
+      { name: "Python", level: "Pandas", icon: Code2 },
+      { name: "Excel", level: "Avanzado", icon: BarChart3 },
+      { name: "Tableau", level: "Intermedio", icon: BarChart3 },
+    ],
+  },
+  {
+    titleKey: "skillDatabasesTitle",
+    skills: [
+      { name: "SQL Server", icon: Database },
+      { name: "MySQL", icon: Database },
+      { name: "PostgreSQL", icon: Database },
+    ],
+  },
+  {
+    titleKey: "skillProjectMgmtTitle",
+    skills: [
+      { name: "Scrum", icon: Sparkles },
+      { name: "Agile", icon: Sparkles },
+      { name: "Jira", icon: Sparkles },
+    ],
+  },
+  {
+    titleKey: "skillAIToolsTitle",
+    skills: [
+      { name: "Claude", icon: Bot },
+      { name: "ChatGPT", icon: Bot },
+      { name: "Copilot", icon: Bot },
+      { name: "Gemini", icon: Bot },
+      { name: "Grok", icon: Bot },
+    ],
+  },
 ];
 
 const certificates = [
@@ -373,11 +398,22 @@ function Index() {
       </Section>
 
       <Section id="habilidades" title={t.skillsTitle} kicker={t.skillsKicker}>
-        <div className="flex flex-wrap gap-3">
-          {skills.map((s) => (
-            <div key={s.name} className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-base backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
-              <s.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
-              {s.name}
+        <div className="grid md:grid-cols-2 gap-6">
+          {skillCategories.map((cat) => (
+            <div key={cat.titleKey} className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur">
+              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-primary" />
+                {t[cat.titleKey]}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {cat.skills.map((s) => (
+                  <div key={s.name} className="group inline-flex items-center gap-3 rounded-full border border-border bg-background/50 px-6 py-3 text-base backdrop-blur hover:border-primary hover:-translate-y-0.5 transition">
+                    <s.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+                    <span>{s.name}</span>
+                    {s.level && <span className="text-xs text-muted-foreground border-l border-border pl-3">{s.level}</span>}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
